@@ -10,6 +10,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   var myAvatar = document.createElement('a-box');
   var player = document.querySelector('#player');
   player.appendChild(myAvatar);
+  window.sounds.playerJoined();
   
   let playerData = {};
   let pos = player.getAttribute('position');
@@ -27,16 +28,21 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   window.otherPlayers = {};
   window.addOtherPlayer = newPlayerObject=>{
     console.log(`Adding new player with id: ${newPlayerObject.id}`)
+    console.log(newPlayerObject);
+    console.log(newPlayerObject.data);
     let p = document.createElement('a-box');
     p.id = newPlayerObject.id;
     p.setAttribute('position',newPlayerObject.data.position);
     p.setAttribute('rotation',newPlayerObject.data.rotation);
     p.setAttribute('scale','1.8 1.8 1.8');
-    p.setAttribute('color', window.config.color);
+    p.setAttribute('color', window.config.avatar.color);
     let face = document.createElement('a-plane');
     face.setAttribute('position','0 0 -0.51');
     face.setAttribute('rotation','0 180 0');
-    face.setAttribute('src',window.config.face);
+    face.setAttribute('src',window.config.avatar.faces[newPlayerObject.data.faceIndex]);
+    face.setAttribute('material','transparent: true');
+    p.face = face;
+    p.faceIndex = newPlayerObject.data.faceIndex;
     p.appendChild(face);
     p.msg = document.createElement('a-entity');
     let test = 'I LOVE NODE.JS and SOCKET.IO!';
@@ -50,6 +56,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
     p.appendChild(p.msg);
     window.scene.appendChild(p);
     window.otherPlayers[p.id]=p;
+    window.sounds.playerJoined();
   }
   
   window.updateOtherPlayers = o=>{
@@ -59,6 +66,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
           let op = window.otherPlayers[key];
           op.setAttribute('position',o[key].position);
           op.setAttribute('rotation',o[key].rotation);
+          op.face.setAttribute('src',window.config.avatar.faces[o[key].faceIndex]);
         }
       }
     });
@@ -67,6 +75,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   window.removePlayer = id=>{
  window.otherPlayers[id].parentNode.removeChild(window.otherPlayers[id]);
     delete window.otherPlayers[id]; 
+    window.sounds.playerLeft();
   }
   
   window.setPlayerMessage = data=>{
@@ -98,6 +107,7 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
       rot.y = Number(Number(rot.y).toFixed(1));
       rot.z = Number(Number(rot.z).toFixed(1));
       playerData.rotation = rot;
+      playerData.faceIndex = window.socket.playerData.faceIndex; //Todo: Allow user to update face.
       if(window.socket.isInitialized)
         window.socket.setPlayerData(playerData);
       else

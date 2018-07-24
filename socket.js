@@ -8,6 +8,8 @@ module.exports = (io)=>{
         socket.ip = socket.ip.split(',')[0].replace(/\./g, "_");
         console.log(`New member has connected with socket id: ${socket.id} and ip: ${socket.ip}`);
         socket.on('new-player',function(shared_state_data){ 
+          console.log('sending players already here');
+          console.log(players);
           socket.emit('players-already-here',players);
           console.log("New player has state:",shared_state_data);
           // Add the new player to the object
@@ -26,6 +28,7 @@ module.exports = (io)=>{
           if(players[socket.id] == null) return;
           players[socket.id].position = data.position; 
           players[socket.id].rotation = data.rotation;
+          players[socket.id].faceIndex = data.faceIndex;
           //console.log(data);
         }) 
         socket.on('msg',function(data){
