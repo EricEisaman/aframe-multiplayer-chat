@@ -7,9 +7,15 @@ Toggle chat ui with **EQUALS** key. Toggle music mute with **M** key. Play next 
 
 **Remixing Instructions**
 
-Set the **MESSAGE_KEY** in .env. Change the scene's environment preset in the **index.html.**  Create your own **.ply** models in <a href="https://ephtracy.github.io/" no-opener no-referer>**MagicaVoxel**</a> and add them to the scene in the **index.html**. In the **client-config.js** set the face URL and color for all avatars.
+Set the **MESSAGE_KEY** in .env. Change the scene's environment preset in the **index.html.**  Create your own **.ply** models in <a href="https://ephtracy.github.io/" no-opener no-referer>**MagicaVoxel**</a> and add them to the scene in the **index.html**. 
 
-![App Screens](https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Fapp-screens.png?1532354439691)
+In the **client-config.js** set the values for:
+  - avatar array of face image URLs ( use .png with transparent background )
+  - avatar color 
+  - sound file URL for playerJoined
+  - sound file URL for playerLeft
+
+![App Screens](https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Ffaces.png?1532450183268)
 
 **Environment Presets**
 
