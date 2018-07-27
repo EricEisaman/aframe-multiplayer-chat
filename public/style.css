@@ -1,54 +1,129 @@
-* {
-  box-sizing: border-box;
+@charset "UTF-8";
+dialog {
+  padding: 0;
+  border: 0;
+  top: 0;
+  left: 0;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 1em black;
 }
 
-body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
+/* native backdrop */
+dialog::-webkit-backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
+/* polyfill backdrop */
+dialog + .backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.bold {
-  font-weight: bold;
+dialog[open] {
+  -webkit-animation: slide-up 0.4s ease-out;
+          animation: slide-up 0.4s ease-out;
 }
 
-p {
-  max-width: 600px;
+/* The following styles are for older browsers when using
+   the polyfill. These aren’t necessary for Chrome/Firefox. */
+dialog {
+  display: none;
+  position: absolute;
+  margin: 0 auto;
+  /* should center it, but not working in Safari */
+  max-width: 80vw;
+  background-color: white;
 }
 
-input {
+dialog[open] {
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 300px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
+}
+
+/* prettying things up a bit */
+.close {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  padding: 0.3em;
+  line-height: 0.6;
+  background-color: transparent;
+  border: 0;
+  font-size: 2em;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 1em;
+}
+
+.modal-header {
+  margin: 0;
+  padding-bottom: 0.6em;
+  background-color: #ddedfd;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  border-bottom: 1px solid #78a4d3;
+  font-size: 20px;
+}
+
+.modal-footer {
+  border-top: 1px solid #78a4d3;
 }
 
 button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
+  padding: 0.4em 1em 0.2em;
+  font-family: Glober, Helvetica, sans-serif;
 }
 
-button:hover {
-  background-color: yellow;
+@-webkit-keyframes slide-up {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 15px);
+            transform: translate(0, 15px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
 }
 
-button:active {
-  box-shadow: none;
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 15px);
+            transform: translate(0, 15px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
 }
 
-li {
-  margin-bottom: 5px;
+input {
+  width:420px;
+  margin:4px;
+  font-size:20px;
 }
+
+#key {
+  display:block;
+  width:100px;
+}
+
+.face-btn {
+  margin:3px;
+}
+
+
 
 
