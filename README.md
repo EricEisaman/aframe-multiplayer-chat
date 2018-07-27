@@ -3,7 +3,16 @@ Aframe Multiplayer Chat
 
 **How to Play**
 
-Toggle chat ui with **EQUALS** key. Toggle music mute with **M** key. Play next song with **P** key. You won't be able to send chat messages without entering the proper **Message_KEY**. Pressing the **F** key or clicking the **VR Headset Icon** will take you to fullscreen mode.  Note: in fullscreen mode only movement keys are enabled.  Press the **ESC** key to exit fullscreen mode. Start by clicking the **Show Live** button at the top of this page.
+Toggle music mute with **M** key. Play next song with **P** key. 
+
+![UI](https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Fui.png?1532486353198)
+
+Toggle the **Message and Face UI** with the **EQUALS** key. You must enter the proper **Message_KEY** to send a message. **Tab** your way through the UI elements. Once you have finished typing your message or selecting a new face, hit **ENTER** to submit.
+
+
+Pressing the **F** key or clicking the **VR Headset Icon** will take you to fullscreen mode.  Note: in fullscreen mode only movement keys are enabled.  Press the **ESC** key to exit fullscreen mode. 
+
+<a href="https://aframe-multiplayer-chat.glitch.me/" no-opener no-referer>**LIVE DEMO**</a>
 
 **Remixing Instructions**
 
@@ -14,6 +23,8 @@ In the **client-config.js** set the values for:
   - avatar color 
   - sound file URL for playerJoined
   - sound file URL for playerLeft
+  - BGM songs
+  - custom key bindings/behaviors
 
 ![App Screens](https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Ffaces.png?1532450183268)
 

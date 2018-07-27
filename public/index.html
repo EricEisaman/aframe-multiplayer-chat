@@ -1,10 +1,14 @@
 <html>
   <head>
+    <meta property="og:title" content="3D Multiplayer Design with A-Frame and Node.js"/>
+    <meta property="og:image" content="https://cdn.glitch.com/3294c4a3-a3d8-412f-a31e-1e03d1cd1cbd%2Fpreview.jpg?1532466378209"/>
+    <meta property="og:description" content="This project introduces fundamentals of multiplayer game design with A-Frame and Node.js."/>
+    <meta property="og:url" content="//aframe-multiplayer-chat.glitch.me/" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/feiss/aframe-environment-component/ad57b15d/dist/aframe-environment-component.min.js"></script>
     <script src="https://rawgit.com/takahirox/aframe-rain/master/build/aframe-rain.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.4/dist/aframe-extras.min.js"></script>
-    <script src="https://rawgit.com/takahirox/aframe-rain/master/build/aframe-rain.min.js"></script>
   </head>
   <body>
     <div style="position:relative;">
@@ -98,7 +102,7 @@
                  scale="0.1 0.05 0.1"
                  material="color: #FF0080"
                  ></a-hexgrid>
-      <!-- Lighting -->
+      <!-- Rotating Lights -->
       <a-sphere  position="5 1.6 -4" radius="1.25" color="green" shadow="cast: true;" static-body>
         <a-box id="spot-light-1" scale="0.3 0.3 0.3" color="#FF0080" position="0 2.2 0">
           <a-entity  light="type: spot; angle: 40; castShadow:true; color:#FF0080"
@@ -112,16 +116,25 @@
         </a-box>
       </a-sphere>
       
-      
     </a-scene>
     <div id="dialog-container" style="position:absolute; top:0px; left:0px; z-index:1000;width:600">
-      <dialog id="dialog" style="width:600">
-        <input id="msg" placeholder="Enter your message here." style="width:460">
-        <input id="key" placeholder="key" style="width:200">
-        <button id="submit-message">
+      <dialog id="dialog_" style="width:600">
+        <input id="msg_" placeholder="Enter your message here." style="width:460">
+        <input id="key_" placeholder="key" style="width:200">
+        <button id="submit-message_">
           Submit Message
         </button>
       </dialog>
+      <dialog id="dialog">
+      <h3 class="modal-header">Send a Message or Change your Avatar</h3>
+      <div class="modal-body">
+        <input id="msg" placeholder="Enter your message.">
+        <input id="key" placeholder="key">
+      </div>
+      <footer id="btns" class="modal-footer">
+        
+      </footer>
+    </dialog>
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"

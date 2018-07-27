@@ -25,6 +25,10 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
   playerData.rotation = rot;
   window.socket.initializePlayerData(playerData);
   
+  window.setPlayerProperty = (prop,val)=>{
+    window.socket.playerData[prop] = val;
+  }
+  
   window.otherPlayers = {};
   window.addOtherPlayer = newPlayerObject=>{
     console.log(`Adding new player with id: ${newPlayerObject.id}`)
@@ -95,6 +99,12 @@ document.querySelector('a-scene').addEventListener('loaded', function () {
     spotlight2.object3D.rotateY(dt/800);
     totalTime += dt;
     totalSteps++;
+    if(player.object3D.position.y < 0.8){
+        let x = player.object3D.position.x;
+        let z = player.object3D.position.z;
+        player.body.el.setAttribute("position",`${x} 1.8 ${z}`);
+        player.body.el.setAttribute("velocity","0 0 0");
+      }
     if(totalSteps%6 == 0) {
       let playerData = {};
       let pos = player.getAttribute('position');

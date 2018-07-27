@@ -1,4 +1,4 @@
-  var songs = [190264698,161275114,412704342,261048665];
+  var songs = window.config.songs;
   var currentSongIndex = 0;
   
   var bgm = document.createElement('audio');
@@ -40,10 +40,10 @@
 
 document.body.addEventListener('keyup',e=>{
    if(window.dialog.isShowing)return;
-   switch(e.keyCode){
-     case 80: playNextSong();
+   switch(e.code){
+     case window.config.keys.nextSong: playNextSong();
        break;
-     case 77: 
+     case window.config.keys.toggleMute: 
        if(bgm.volume > 0){
           bgm.volume = 0.00;
        }else{
